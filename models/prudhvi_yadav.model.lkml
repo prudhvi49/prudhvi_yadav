@@ -25,9 +25,6 @@ explore: customer {
  persist_for: "30 minutes"
  sql_always_where: ${orders.o_orderdate_year} <> '1993' ;;
 
-always_filter: {
-  filters: [part.p_mfgr: "Manufacturer#1"]
-}
 
 
   join: orders {
@@ -71,20 +68,8 @@ always_filter: {
     sql_on: ${customer.c_custkey}=${supplier.s_suppkey} ;;
   }
 }
-explore: taxes_details {}
 explore: cumulative_totals {}
+
 explore: Top_N_Brands {}
+
 explore: sql_runner_query {}
-
-
-test: Totalprice_is_accurate {
-  explore_source: customer {
-    column: o_totalprice {
-      field: orders.o_totalprice
-    }
-    filters: [orders.o_orderdate_year: "1993"]
-  }
-  assert: Totalprice_is_expected_value {
-    expression: ${orders.o_totalprice} < 10000 ;;
-  }
-}

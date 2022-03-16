@@ -76,7 +76,7 @@ test: Totalprice_is_accurate {
     }
      }
   assert: Totalprice_is_expected_value {
-    expression: ${orders.o_totalprice} > 10000 ;;
+    expression: ${orders.o_totalprice} < 10000 ;;
   }
 }
 

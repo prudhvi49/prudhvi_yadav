@@ -20,6 +20,7 @@ view: part {
   dimension: p_mfgr {
     type: string
     sql: ${TABLE}."P_MFGR" ;;
+
   }
 
   dimension: p_name {

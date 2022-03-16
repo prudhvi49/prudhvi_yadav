@@ -25,6 +25,11 @@ explore: customer {
  persist_for: "30 minutes"
  sql_always_where: ${orders.o_orderdate_year} <> '1993' ;;
 
+  always_filter: {
+    filters: [part.p_mfgr: "Manufacturer#1"]
+  }
+
+
 
 
   join: orders {

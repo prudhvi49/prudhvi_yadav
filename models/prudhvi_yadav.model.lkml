@@ -68,10 +68,23 @@ explore: customer {
     sql_on: ${customer.c_custkey}=${supplier.s_suppkey} ;;
   }
 }
+
+test: Totalprice_is_accurate {
+  explore_source: customer {
+    column: o_totalprice {
+      field: orders.o_totalprice
+    }
+     }
+  assert: Totalprice_is_expected_value {
+    expression: ${orders.o_totalprice} > 10000 ;;
+  }
+}
+
 explore: cumulative_totals {}
 
 explore: Top_N_Brands {}
 
 explore: taxes_details {}
+
 
 explore: sql_runner_query {}

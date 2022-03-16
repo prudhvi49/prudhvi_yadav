@@ -56,6 +56,7 @@ explore: customer {
     type: left_outer
     relationship: many_to_one
     sql_on: ${customer.c_custkey}=${part.p_partkey} ;;
+    required_access_grants: [Locale_name]
   }
   join: partsupp {
     type: left_outer

@@ -72,4 +72,6 @@ explore: cumulative_totals {}
 
 explore: Top_N_Brands {}
 
+explore: taxes_details {}
+
 explore: sql_runner_query {}

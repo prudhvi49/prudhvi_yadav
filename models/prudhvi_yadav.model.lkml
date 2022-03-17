@@ -16,22 +16,19 @@ named_value_format: euro_in_thousands {
 }
 
 access_grant: Locale_name {
-  user_attribute: locale
-  allowed_values: ["en"]
+  user_attribute: customer
+  allowed_values: ["INDIA"]
 }
 
 
 explore: customer {
  persist_for: "30 minutes"
- sql_always_where: ${orders.o_orderdate_year} <> '1993' ;;
+ sql_always_where: ${nation.n_name}<>'INDIA';;
+
 
   always_filter: {
     filters: [part.p_mfgr: "Manufacturer#1"]
   }
-
-
-
-
   join: orders {
     type: left_outer
     relationship: many_to_one
@@ -49,15 +46,14 @@ explore: customer {
     sql_where: ${nation.n_name} in  ({{ _user_attributes['customer'] }}) ;;
   }
 
-
-
-
   join: part {
     type: left_outer
     relationship: many_to_one
     sql_on: ${customer.c_custkey}=${part.p_partkey} ;;
     required_access_grants: [Locale_name]
-  }
+
+
+    }
   join: partsupp {
     type: left_outer
     relationship: many_to_one

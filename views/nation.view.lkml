@@ -2,7 +2,6 @@ view: nation {
   sql_table_name: "TPCH_SF1"."NATION"
     ;;
 
-
   dimension: n_comment {
     type: string
     sql: ${TABLE}."N_COMMENT" ;;
@@ -13,7 +12,7 @@ view: nation {
     map_layer_name: countries
     sql: ${TABLE}."N_NAME" ;;
     case_sensitive: yes
-
+    required_access_grants: [Locale_name]
   }
 
   dimension: n_nationkey {

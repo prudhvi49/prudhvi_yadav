@@ -2,7 +2,7 @@ connection: "assessment"
 
 # include all the views
 include: "/views/**/*.view"
-fiscal_month_offset: 6
+fiscal_month_offset: 3
 
 datagroup: prudhvi_yadav_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;

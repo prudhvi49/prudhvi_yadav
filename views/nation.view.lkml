@@ -9,6 +9,7 @@ view: nation {
 
   dimension: n_name {
     type: string
+    hidden: no
     map_layer_name: countries
     sql: ${TABLE}."N_NAME" ;;
     case_sensitive: yes

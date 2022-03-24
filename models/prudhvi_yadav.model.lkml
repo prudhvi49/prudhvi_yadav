@@ -2,7 +2,7 @@ connection: "assessment"
 
 # include all the views
 include: "/views/**/*.view"
-fiscal_month_offset: 6
+fiscal_month_offset: 3
 
 datagroup: prudhvi_yadav_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -11,22 +11,29 @@ datagroup: prudhvi_yadav_default_datagroup {
 
 persist_with: prudhvi_yadav_default_datagroup
 
-named_value_format: euro_in_thousands {
-  value_format: "\"€\"\" K\""
+named_value_format: thousands {
+  value_format: "#,##0"
 }
 
 access_grant: Locale_name {
-  user_attribute: locale
-  allowed_values: ["en"]
+
+
+  user_attribute: customer
+  allowed_values: ["ARGENTINA"]
 }
 
 
 explore: customer {
  persist_for: "30 minutes"
  sql_always_where: ${orders.o_orderdate_year} <> '1993' ;;
+ label: "prudhvi"
+ #sql_always_where: ${nation.n_name}<>'INDIA';;
 
 
 
+  #always_filter: {
+   # filters: [part.p_mfgr: "Manufacturer#1"]
+  #}
   join: orders {
     type: left_outer
     relationship: many_to_one
@@ -41,7 +48,7 @@ explore: customer {
     type: left_outer
     relationship: many_to_one
     sql_on: ${customer.c_nationkey}=${nation.n_nationkey} ;;
-    sql_where: ${nation.n_name} in  ({{ _user_attributes['customer'] }}) ;;
+    #sql_where: ${nation.n_name} in  ({{ _user_attributes['customer'] }}) ;;
   }
 
 
@@ -51,7 +58,10 @@ explore: customer {
     type: left_outer
     relationship: many_to_one
     sql_on: ${customer.c_custkey}=${part.p_partkey} ;;
-  }
+    #required_access_grants: [Locale_name]
+
+
+    }
   join: partsupp {
     type: left_outer
     relationship: many_to_one

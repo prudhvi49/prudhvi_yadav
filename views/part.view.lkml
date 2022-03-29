@@ -20,7 +20,7 @@ view: part {
   dimension: p_mfgr {
     type: string
     sql: ${TABLE}."P_MFGR" ;;
-    }
+  }
 
   dimension: p_name {
     type: string
@@ -118,6 +118,7 @@ view: part {
   measure: total_retail_price {
     type: sum
     sql: ${p_retailprice} ;;
+    value_format_name: value
   }
 
 

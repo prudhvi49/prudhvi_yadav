@@ -115,7 +115,6 @@ view: orders {
           WHEN {% parameter select_timeframe %} = 'Day' THEN ${o_orderdate_date}
           WHEN {% parameter select_timeframe %} = 'Week' THEN ${o_orderdate_week}
           WHEN {% parameter select_timeframe %} = 'Month' THEN ${o_orderdate_month}
-          WHEN {% parameter select_timeframe %} = 'Year' THEN ${o_orderdate_year}
           ELSE NULL
           END;;
        }
@@ -171,6 +170,7 @@ view: orders {
   dimension: o_totalprice {
     type: number
     sql: ${TABLE}."O_TOTALPRICE" ;;
+    value_format_name: value
   }
 
   dimension: big_order {

@@ -118,6 +118,7 @@ view: part {
   measure: total_retail_price {
     type: sum
     sql: ${p_retailprice} ;;
+    value_format_name: value
   }
 
 
